@@ -4,10 +4,25 @@ import codecs #코덱
 import datetime; import time; import csv
 import json
 
-#원래 txt 자체는 ascii 파일이라  다시 바꿔주는 작업.
-f = codecs.open("KakaoTalkChats.txt", encoding = 'utf-8')
-data = f.read()
+class File_to_data:
+    def __init__(self,fname):
+        #원래 txt 자체는 ascii 파일이라  다시 바꿔주는 작업.
+        f = codecs.open(fname, encoding = 'utf-8')
+        data = f.read()
+        date_list,url_list,content_list,num_data = getDataSeperateDateContent(data)
+        self.content_list = write_json(date_list,url_list,content_list,num_data)
 
+    def get_dict_list(self):
+        return self.content_list
+    def save_dict_list(self):
+        print("현재 디렉토리로 저장됩니다.")
+        print("파일 이름을 입력하세요.")
+        fname = input()
+        fname += ".json"
+        save(self.content_list,fname)
+        print("저장완료.")
+
+    
 def  getDataSeperateDateContent(data):
     #정규식 이용/하나에 너무 많아서 객체로(compile)로 반환하는게 좋
     #n = data.find(u'회원')#u changes from krean to unicode
@@ -21,7 +36,7 @@ def  getDataSeperateDateContent(data):
     date_index = []
     for each_match in reg_matchs:
         one_date_index = each_match.span()#span is the re fucntion that return the start and the end.
-        print(one_date_index)
+        #print(one_date_index)
         date_index.append(one_date_index)
         
     #날짜 입력
@@ -67,7 +82,7 @@ def  getDataSeperateDateContent(data):
             for j in range(date_index[i][1],date_index[i+1][0]):
                 content = content + data[j]
             content_list.append(content)
-    print (len(date_index))
+    #print (len(date_index))
     
     #내용 정제
     #(http|https):\/\/(([\xA1-\xFEa-z0-9_\-]+\.[\xA1-\xFEa-z0-9:;&#@=_~%\?\/\.\,\+\-]+))
@@ -97,14 +112,15 @@ def write_json(date_list,url_list,content_list,num):
         dic['content_coms'] = content_list[i]
         #print(dic)
         contents_list.append(dic)
-    content_json = json.dumps(contents_list, sort_keys=True, indent=4)
 
-    return contents_list,content_json
+    print("DONE")
+    return contents_list
 
-if __name__== __main__:
-    date_list,url_list,content_list,num_data = getDataSeperateDateContent(data)
-    #write_csv(date_list,url_list,content_list,num_data)#utf문제 발생하니까 다르게....
-    contents_list,content_json = write_json(date_list,url_list,content_list,num_data)
+
+def save(data,fname):
+    with open(fname, 'w') as f:
+         json.dump(data, f)
+
 
 #deprecated
 def write_csv(date_list,url_list,content_list,num):
