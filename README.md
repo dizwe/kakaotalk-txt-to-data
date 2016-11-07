@@ -54,5 +54,7 @@ Data list 저장하기
 내용은
 
     {'content_names': int 번호, 'content_dates': str 날짜, 'content_link': str list 링크 리스트, 'content_coms': str 본문}
-		ex){'content_names': 317, 'content_dates': '2016-07-20 16:01', 'content_link': ['http://ppss.kr/archives/66089'], 'content_coms': '당장 느끼는 기분이 행복을 결정하지는 않습니다 | ㅍㅍㅅㅅ - http://ppss.kr/archives/66089'} 입니다.
+		ex){'content_names': 317, 'content_dates': '2016-07-20 16:01', 'content_link': ['http://ppss.kr/archives/66089'], 'content_coms': '당장 느끼는 기분이 행복을 결정하지는 않습니다 | ㅍㅍㅅㅅ - http://ppss.kr/archives/66089'}
+
+입니다.
   
