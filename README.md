@@ -30,19 +30,31 @@ object를 return합니다.
 	
 str_fname : 카카오톡에서 저장된 txt파일 이름을 적어주세요.
   
-*주의* : txt파일을 현재 디렉토리(ex.C://Python35)에 저장해주세요.  
-  
+*주의* : txt파일을 지정하고 싶은 디렉토리(예를들어, C://Python35)에 저장해주세요.  
+
+
 Data list 얻기 
 -------------
     data_list = data_object.get_dict_list()
 		
 return 형식 : dictionary들의 list
 
-return list(data_lst) 내용 : 
+return 내용 : 
 
     {'content_names': int 번호, 'content_dates': str 날짜, 'content_link': str list 링크 리스트, 'content_coms': str 본문}
     ex){'content_names': 317, 'content_dates': '2016-07-20 16:01', 'content_link': ['http://ppss.kr/archives/66089'], 'content_coms': '당장 느끼는 기분이 행복을 결정하지는 않습니다 | ㅍㅍㅅㅅ - http://ppss.kr/archives/66089'}
-  
+
+예를들어 파일을 돌린 후에 
+
+contents_list[2] 를 입력하면,
+
+{'content_names': 317, 'content_dates': '2016-07-20 16:01', 'content_link': ['http://ppss.kr/archives/66089'], 'content_coms': '당장 느끼는 기분이 행복을 결정하지는 않습니다 | ㅍㅍㅅㅅ - http://ppss.kr/archives/66089'}
+을 얻을수 있고
+
+contents_list[2]['content_link'][0]
+
+를 입력하면 'http://ppss.kr/archives/66089'와 같은 링크를 얻을 수 있습니다.
+  
 Data list 저장하기
 -------------
     data_list.save_dict_list()
