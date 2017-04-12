@@ -54,6 +54,7 @@ contents_list[2] 를 입력하면,
 contents_list[2]['content_link'][0]
 
 를 입력하면 'http://ppss.kr/archives/66089'와 같은 링크를 얻을 수 있습니다.
+
   
 Data list 저장하기
 -------------
